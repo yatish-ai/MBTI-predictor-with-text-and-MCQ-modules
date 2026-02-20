@@ -4,12 +4,26 @@
 
 {% block extra_css %}
 <style>
-    /* Personality card grid: compact with More button */
+    /* Personality card grid: strict 4×4 layout on desktop */
     .personality-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(4, 1fr);
         gap: 15px;
         margin-top: 20px;
+    }
+    
+    /* Tablet: 2 columns */
+    @media (max-width: 992px) {
+        .personality-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    /* Mobile: 1 column */
+    @media (max-width: 576px) {
+        .personality-grid {
+            grid-template-columns: 1fr;
+        }
     }
     .personality-card {
         padding: 15px;
@@ -19,6 +33,7 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        min-height: 100%; /* Ensure equal height in grid */
     }
     .personality-card-header {
         display: flex;
