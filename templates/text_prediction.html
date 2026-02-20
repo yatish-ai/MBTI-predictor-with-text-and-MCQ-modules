@@ -2,10 +2,89 @@
 
 {% block title %}Text Analysis - MBTI Personality Predictor{% endblock %}
 
+{% block extra_css %}
+<style>
+    .text-intro {
+        margin-bottom: 20px;
+        color: #555;
+        font-family: var(--font-body);
+    }
+    .text-intro-label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: #111642;
+        font-family: var(--font-body);
+    }
+    .text-input-area {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #c3caf5;
+        border-radius: 10px;
+        font-size: 15px;
+        font-family: var(--font-body);
+        resize: vertical;
+        background: #050611;
+        color: #e5ebff;
+        box-shadow: 0 0 12px rgba(79, 243, 255, 0.18) inset;
+    }
+    .text-input-area::placeholder {
+        color: #7a81b5;
+    }
+    .text-tip {
+        margin-top: 5px;
+        color: #7a81b5;
+        font-size: 0.8em;
+        font-family: var(--font-body);
+    }
+    .text-result-card {
+        background: radial-gradient(circle at top left, #ffffff 0, #eef0ff 40%, #d3dbff 100%);
+        color: #111642;
+    }
+    .text-result-title {
+        color: #111642;
+        margin-bottom: 20px;
+    }
+    .text-type-badge {
+        font-family: var(--font-primary);
+        font-size: 2.6rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        text-shadow: 0 0 8px rgba(79, 243, 255, 0.45);
+    }
+    .text-type-sub {
+        font-size: 0.95rem;
+        opacity: 0.9;
+        font-family: var(--font-body);
+    }
+    .dimension-chip {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+    }
+    .dimension-chip-label {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        font-family: var(--font-primary);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+    .dimension-chip-letter {
+        font-size: 1.8rem;
+        margin-bottom: 4px;
+    }
+    .dimension-chip-conf {
+        font-size: 0.85rem;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="card">
     <h2>📝 Text-Based Personality Prediction</h2>
-    <p style="margin-bottom: 20px; color: #555;">
+    <p class="text-intro">
         Enter a text description about yourself, your preferences, or how you approach situations. 
         Our machine learning models will analyze your writing style to predict your MBTI personality type.
     </p>
@@ -18,17 +97,17 @@
     
     <form method="POST" action="{{ url_for('text_prediction') }}">
         <div style="margin-bottom: 20px;">
-            <label for="text_input" style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">
+            <label for="text_input" class="text-intro-label">
                 Your Text Description:
             </label>
             <textarea 
                 id="text_input" 
                 name="text_input" 
                 rows="8" 
-                style="width: 100%; padding: 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px; font-family: inherit; resize: vertical;"
+                class="text-input-area"
                 placeholder="Example: I enjoy breaking down complex problems and finding logical solutions. I prefer working independently and value deep, meaningful conversations over small talk..."
                 required>{{ input_text if input_text else '' }}</textarea>
-            <p style="margin-top: 5px; color: #6c757d; font-size: 0.9em;">
+            <p class="text-tip">
                 💡 Tip: Write at least 50-100 words for better accuracy.
             </p>
         </div>
@@ -38,15 +117,21 @@
 </div>
 
 {% if result %}
-<div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-    <h2 style="color: white; margin-bottom: 20px;">🎯 Prediction Results</h2>
+<div class="card text-result-card">
+    <h2 class="text-result-title">🎯 Prediction Results</h2>
     
     <div style="text-align: center; padding: 30px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 30px;">
-        <h1 style="font-size: 3em; margin-bottom: 10px;">{{ result.personality_type }}{% if mbti_info %} – {{ mbti_info.title }}{% endif %}</h1>
-        <p style="font-size: 1.2em; opacity: 0.9;">{{ result.description }}</p>
+        <div class="text-type-badge">{{ result.personality_type }}</div>
+        {% if mbti_info %}
+        <div class="text-type-sub">{{ mbti_info.title }} · {{ result.description }}</div>
+        {% else %}
+        <div class="text-type-sub">{{ result.description }}</div>
+        {% endif %}
     </div>
     
-    <h3 style="color: white; margin-bottom: 15px;">📊 Dimension Analysis</h3>
+    <h3 style="margin-bottom: 15px; font-family: var(--font-primary); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.9rem;">
+        📊 Dimension Analysis
+    </h3>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
         {% for dimension, pred in result.dimensions.items() %}
         {% if dimension == 'E/I' %}
@@ -61,10 +146,10 @@
             {% set letter = 'X' %}
         {% endif %}
         
-        <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 8px; text-align: center;">
-            <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 5px;">{{ dimension }}</div>
-            <div style="font-size: 2em; margin-bottom: 5px;">{{ letter }}</div>
-            <div style="font-size: 0.9em; opacity: 0.9;">{{ "%.1f"|format(pred.probability * 100) }}% confidence</div>
+        <div class="dimension-chip">
+            <div class="dimension-chip-label">{{ dimension }}</div>
+            <div class="dimension-chip-letter">{{ letter }}</div>
+            <div class="dimension-chip-conf">{{ "%.1f"|format(pred.probability * 100) }}% confidence</div>
         </div>
         {% endfor %}
     </div>
