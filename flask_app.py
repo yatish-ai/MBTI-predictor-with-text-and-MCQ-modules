@@ -10,6 +10,7 @@ Both methods coexist and can be accessed via different routes.
 
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import joblib
+import json
 import os
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -158,10 +159,30 @@ def predict_personality_from_text(text):
         return None, f"Prediction error: {str(e)}"
 
 
+def load_mbti_descriptions():
+    """
+    Load detailed MBTI descriptions from JSON for the homepage modal.
+    Returns a dict keyed by MBTI type, or empty dict if file missing.
+    """
+    path = os.path.join(os.path.dirname(__file__), 'mbti_descriptions.json')
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except (json.JSONDecodeError, IOError):
+        return {}
+
+
 @app.route('/')
 def index():
-    """Home page with navigation to both prediction methods."""
-    return render_template('index.html', personality_types=PERSONALITY_TYPES)
+    """Home page with navigation to both prediction methods and 16 type cards with More modals."""
+    mbti_descriptions = load_mbti_descriptions()
+    return render_template(
+        'index.html',
+        personality_types=PERSONALITY_TYPES,
+        mbti_descriptions=mbti_descriptions
+    )
 
 
 @app.route('/text', methods=['GET', 'POST'])

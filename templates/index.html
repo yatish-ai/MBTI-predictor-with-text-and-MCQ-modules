@@ -2,6 +2,152 @@
 
 {% block title %}Home - MBTI Personality Predictor{% endblock %}
 
+{% block extra_css %}
+<style>
+    /* Personality card grid: compact with More button */
+    .personality-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+    .personality-card {
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .personality-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .personality-card-title {
+        color: #667eea;
+        font-size: 1.1em;
+        font-weight: 600;
+    }
+    .personality-card-desc {
+        margin: 0;
+        color: #555;
+        font-size: 0.9em;
+        line-height: 1.4;
+        flex: 1;
+    }
+    .btn-more {
+        align-self: flex-start;
+        padding: 6px 14px;
+        font-size: 0.85em;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.2s, transform 0.2s;
+    }
+    .btn-more:hover {
+        background: #5568d3;
+        transform: translateY(-1px);
+    }
+
+    /* Modal overlay and box */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .modal-overlay.is-open {
+        display: flex;
+    }
+    .modal-box {
+        background: white;
+        border-radius: 12px;
+        max-width: 560px;
+        width: 100%;
+        max-height: 85vh;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+    }
+    .modal-header {
+        padding: 20px 24px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .modal-header h3 {
+        margin: 0;
+        font-size: 1.4em;
+    }
+    .modal-header .modal-title-sub {
+        font-weight: 400;
+        opacity: 0.9;
+        font-size: 0.95em;
+    }
+    .modal-close {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 1.4em;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+    }
+    .modal-close:hover {
+        background: rgba(255, 255, 255, 0.35);
+    }
+    .modal-body {
+        padding: 24px;
+        overflow-y: auto;
+    }
+    .modal-summary {
+        color: #333;
+        line-height: 1.7;
+        margin-bottom: 24px;
+    }
+    .modal-behaviors {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .modal-behaviors li {
+        margin-bottom: 16px;
+    }
+    .modal-behaviors .behavior-title {
+        font-weight: 600;
+        color: #667eea;
+        margin-bottom: 4px;
+    }
+    .modal-behaviors .behavior-desc {
+        color: #555;
+        font-size: 0.95em;
+        line-height: 1.5;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="card">
     <h2>Welcome to MBTI Personality Predictor</h2>
@@ -49,13 +195,106 @@
 
 <div class="card">
     <h2>16 Personality Types</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;">
+    <div class="personality-grid">
         {% for ptype, desc in personality_types.items() %}
-        <div style="padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea;">
-            <strong style="color: #667eea; font-size: 1.1em;">{{ ptype }}</strong>
-            <p style="margin-top: 5px; color: #555; font-size: 0.9em;">{{ desc }}</p>
+        <div class="personality-card">
+            <div class="personality-card-header">
+                <span class="personality-card-title">{{ ptype }}</span>
+            </div>
+            <p class="personality-card-desc">{{ desc }}</p>
+            <button type="button" class="btn-more" data-mbti-type="{{ ptype }}" aria-label="More about {{ ptype }}">More</button>
         </div>
         {% endfor %}
     </div>
 </div>
+
+<!-- Modal: single reusable popup for any MBTI type -->
+<div id="personalityModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box" id="modalBox">
+        <div class="modal-header">
+            <h3 id="modalTitle"><span id="modalType"></span> – <span id="modalTitleSub" class="modal-title-sub"></span></h3>
+            <button type="button" class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p class="modal-summary" id="modalSummary"></p>
+            <ul class="modal-behaviors" id="modalBehaviors"></ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+    // Data from Flask: detailed descriptions for each MBTI type (safe JSON)
+    var mbtiDescriptions = {{ mbti_descriptions | tojson }};
+
+    var overlay = document.getElementById('personalityModal');
+    var modalBox = document.getElementById('modalBox');
+    var modalTypeEl = document.getElementById('modalType');
+    var modalTitleSubEl = document.getElementById('modalTitleSub');
+    var modalSummaryEl = document.getElementById('modalSummary');
+    var modalBehaviorsEl = document.getElementById('modalBehaviors');
+    var modalCloseBtn = document.getElementById('modalClose');
+
+    function openModal(mbtiType) {
+        var data = mbtiDescriptions[mbtiType];
+        if (!data) {
+            modalTypeEl.textContent = mbtiType;
+            modalTitleSubEl.textContent = 'Details not available';
+            modalSummaryEl.textContent = 'No detailed description is available for this type.';
+            modalBehaviorsEl.innerHTML = '';
+        } else {
+            modalTypeEl.textContent = mbtiType;
+            modalTitleSubEl.textContent = data.title || '';
+            modalSummaryEl.textContent = data.summary || '';
+            modalBehaviorsEl.innerHTML = '';
+            if (data.behaviors && data.behaviors.length) {
+                data.behaviors.forEach(function (b) {
+                    var li = document.createElement('li');
+                    li.innerHTML = '<div class="behavior-title">' + escapeHtml(b.title) + '</div><div class="behavior-desc">' + escapeHtml(b.description) + '</div>';
+                    modalBehaviorsEl.appendChild(li);
+                });
+            }
+        }
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
+
+    function escapeHtml(text) {
+        if (!text) return '';
+        var div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // Close on X button
+    modalCloseBtn.addEventListener('click', closeModal);
+    // Close on overlay click (outside modal box)
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeModal();
+    });
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+    });
+    // Prevent closing when clicking inside modal box
+    modalBox.addEventListener('click', function (e) {
+        e.stopPropagation();
+    });
+
+    // Open modal when any "More" button is clicked
+    document.querySelectorAll('.btn-more').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var type = this.getAttribute('data-mbti-type');
+            if (type) openModal(type);
+        });
+    });
+})();
+</script>
 {% endblock %}

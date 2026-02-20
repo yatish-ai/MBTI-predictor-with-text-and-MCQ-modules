@@ -1,0 +1,290 @@
+{
+  "INTJ": {
+    "title": "The Architect",
+    "summary": "INTJs are strategic, independent thinkers who value logic and long-term vision. They prefer to work alone or in small groups and are driven by their inner world of ideas and possibilities.",
+    "behaviors": [
+      {
+        "title": "Strategic planning",
+        "description": "They naturally see patterns and outcomes, and enjoy designing systems and plans that achieve long-term goals efficiently."
+      },
+      {
+        "title": "Independence",
+        "description": "INTJs trust their own analysis over consensus and prefer to make decisions without needing constant approval from others."
+      },
+      {
+        "title": "High standards",
+        "description": "They hold themselves and others to high standards of competence and can be blunt when expectations are not met."
+      }
+    ]
+  },
+  "INTP": {
+    "title": "The Thinker",
+    "summary": "INTPs are logical, innovative, and curious. They love exploring abstract ideas and building mental models of how the world works, often losing track of time in analysis.",
+    "behaviors": [
+      {
+        "title": "Abstract thinking",
+        "description": "They excel at understanding complex theories and enjoy debating ideas for the sake of clarity and precision."
+      },
+      {
+        "title": "Flexibility",
+        "description": "INTPs prefer to keep options open and may delay decisions until they have explored all logical possibilities."
+      },
+      {
+        "title": "Detachment",
+        "description": "They can appear aloof because they prioritize logical consistency over emotional considerations in discussions."
+      }
+    ]
+  },
+  "ENTJ": {
+    "title": "The Commander",
+    "summary": "ENTJs are bold, strategic, and strong-willed. They take charge naturally, set clear goals, and mobilize people and resources to achieve results.",
+    "behaviors": [
+      {
+        "title": "Natural leadership",
+        "description": "They step into leadership roles easily and expect others to meet high standards and deadlines."
+      },
+      {
+        "title": "Decisiveness",
+        "description": "ENTJs make decisions quickly and confidently, and prefer action over prolonged discussion."
+      },
+      {
+        "title": "Direct communication",
+        "description": "They communicate clearly and directly, and may come across as demanding or intimidating when driving for results."
+      }
+    ]
+  },
+  "ENTP": {
+    "title": "The Debater",
+    "summary": "ENTPs are quick-witted, clever, and resourceful. They love intellectual challenges, enjoy playing devil's advocate, and thrive on new ideas and possibilities.",
+    "behaviors": [
+      {
+        "title": "Argumentative enjoyment",
+        "description": "They often debate not to win but to explore ideas; they enjoy the mental exercise and uncovering flaws in reasoning."
+      },
+      {
+        "title": "Innovation",
+        "description": "ENTPs generate many ideas and enjoy starting projects, though they may lose interest before finishing details."
+      },
+      {
+        "title": "Adaptability",
+        "description": "They think on their feet and can pivot quickly when new information or opportunities appear."
+      }
+    ]
+  },
+  "INFJ": {
+    "title": "The Advocate",
+    "summary": "INFJs are creative, insightful, and principled. They seek meaning in relationships and ideas, and often feel a strong sense of purpose to help others.",
+    "behaviors": [
+      {
+        "title": "Insight into people",
+        "description": "They often understand others' motivations and feelings before they are expressed, and value deep, authentic connections."
+      },
+      {
+        "title": "Idealistic vision",
+        "description": "INFJs hold strong values and work toward a vision of how things could be better, sometimes at the cost of their own comfort."
+      },
+      {
+        "title": "Need for privacy",
+        "description": "Despite caring about people, they need significant alone time to recharge and process their rich inner experience."
+      }
+    ]
+  },
+  "INFP": {
+    "title": "The Mediator",
+    "summary": "INFPs are empathetic, creative, and idealistic. They are guided by their values and seek to live in harmony with what they believe is right and meaningful.",
+    "behaviors": [
+      {
+        "title": "Value-driven choices",
+        "description": "They make decisions based on personal values and authenticity rather than pure logic or social pressure."
+      },
+      {
+        "title": "Creative expression",
+        "description": "INFPs often express themselves through writing, art, or other creative outlets that reflect their inner world."
+      },
+      {
+        "title": "Avoidance of conflict",
+        "description": "They prefer to avoid confrontation and may struggle to assert their needs in order to keep peace."
+      }
+    ]
+  },
+  "ENFJ": {
+    "title": "The Protagonist",
+    "summary": "ENFJs are charismatic, inspiring, and natural leaders. They care deeply about others and work to help people grow and achieve their potential.",
+    "behaviors": [
+      {
+        "title": "Natural encouragement",
+        "description": "They see potential in others and actively encourage and support people to reach their goals."
+      },
+      {
+        "title": "Organizing people",
+        "description": "ENFJs enjoy bringing people together, facilitating harmony, and creating environments where others can thrive."
+      },
+      {
+        "title": "Sensitivity to criticism",
+        "description": "They invest heavily in relationships and can be hurt when their efforts are rejected or criticized."
+      }
+    ]
+  },
+  "ENFP": {
+    "title": "The Campaigner",
+    "summary": "ENFPs are enthusiastic, creative, and sociable. They see possibilities everywhere and love connecting with people and exploring new experiences.",
+    "behaviors": [
+      {
+        "title": "Enthusiasm and energy",
+        "description": "They bring energy and optimism to projects and people, and often inspire others with their excitement."
+      },
+      {
+        "title": "Exploration of ideas",
+        "description": "ENFPs enjoy starting new projects and exploring many options; they may struggle with follow-through on routine tasks."
+      },
+      {
+        "title": "People-focused",
+        "description": "They value relationships highly and seek meaningful connections; they are often perceptive about others' feelings."
+      }
+    ]
+  },
+  "ISTJ": {
+    "title": "The Logistician",
+    "summary": "ISTJs are practical, reliable, and methodical. They value facts, tradition, and duty, and work steadily to get things done correctly.",
+    "behaviors": [
+      {
+        "title": "Reliability",
+        "description": "They keep their commitments, follow through on tasks, and expect the same from others."
+      },
+      {
+        "title": "Fact-based decisions",
+        "description": "ISTJs prefer to rely on proven methods and concrete data rather than theory or speculation."
+      },
+      {
+        "title": "Structure and order",
+        "description": "They work best with clear rules, schedules, and expectations and can be frustrated by constant change."
+      }
+    ]
+  },
+  "ISFJ": {
+    "title": "The Protector",
+    "summary": "ISFJs are warm, responsible, and conscientious. They care for others through practical support and loyalty and take their commitments seriously.",
+    "behaviors": [
+      {
+        "title": "Practical care",
+        "description": "They show care through actions—remembering details, helping with tasks, and ensuring others are comfortable."
+      },
+      {
+        "title": "Loyalty",
+        "description": "ISFJs are deeply loyal to family, friends, and institutions and may have difficulty letting go of past commitments."
+      },
+      {
+        "title": "Avoiding the spotlight",
+        "description": "They often work behind the scenes and may not seek recognition, though they appreciate being valued."
+      }
+    ]
+  },
+  "ESTJ": {
+    "title": "The Executive",
+    "summary": "ESTJs are organized, practical, and decisive. They take charge, enforce rules, and work to create order and efficiency in their environment.",
+    "behaviors": [
+      {
+        "title": "Direct leadership",
+        "description": "They lead by setting clear expectations, organizing tasks, and holding people accountable for results."
+      },
+      {
+        "title": "Tradition and rules",
+        "description": "ESTJs value established procedures and can be skeptical of change that seems to ignore proven methods."
+      },
+      {
+        "title": "Practical focus",
+        "description": "They focus on what works in the real world and may dismiss ideas that seem unrealistic or overly theoretical."
+      }
+    ]
+  },
+  "ESFJ": {
+    "title": "The Consul",
+    "summary": "ESFJs are caring, social, and community-minded. They work to create harmony, support others, and maintain positive relationships in their groups.",
+    "behaviors": [
+      {
+        "title": "Social harmony",
+        "description": "They notice and respond to others' needs and work to keep the group cohesive and happy."
+      },
+      {
+        "title": "Responsibility to others",
+        "description": "ESFJs feel responsible for the well-being of those around them and may sacrifice their own needs to help."
+      },
+      {
+        "title": "Sensitivity to rejection",
+        "description": "They care deeply about being liked and accepted and can be hurt by conflict or criticism from others."
+      }
+    ]
+  },
+  "ISTP": {
+    "title": "The Virtuoso",
+    "summary": "ISTPs are bold, practical, and experimental. They prefer to understand how things work through hands-on experience and enjoy solving problems with tools and logic.",
+    "behaviors": [
+      {
+        "title": "Hands-on problem solving",
+        "description": "They learn by doing and enjoy taking things apart, fixing them, or building with concrete materials."
+      },
+      {
+        "title": "Calm under pressure",
+        "description": "ISTPs often stay cool in crises and focus on immediate, practical solutions rather than emotions."
+      },
+      {
+        "title": "Independence",
+        "description": "They value freedom and minimal interference and may resist being tied down by too many rules or commitments."
+      }
+    ]
+  },
+  "ISFP": {
+    "title": "The Adventurer",
+    "summary": "ISFPs are flexible, charming, and artistic. They live in the present, value beauty and authenticity, and prefer to express themselves through action rather than words.",
+    "behaviors": [
+      {
+        "title": "Present-focused",
+        "description": "They prefer to experience life as it happens and may avoid long-term planning in favor of spontaneity."
+      },
+      {
+        "title": "Aesthetic sensitivity",
+        "description": "ISFPs often have a strong appreciation for aesthetics—art, nature, or style—and may express themselves through creative outlets."
+      },
+      {
+        "title": "Conflict avoidance",
+        "description": "They dislike confrontation and may withdraw or accommodate to keep peace rather than assert their views."
+      }
+    ]
+  },
+  "ESTP": {
+    "title": "The Entrepreneur",
+    "summary": "ESTPs are energetic, perceptive, and spontaneous. They thrive on action, enjoy taking risks, and are skilled at reading people and situations in the moment.",
+    "behaviors": [
+      {
+        "title": "Action-oriented",
+        "description": "They prefer to learn by doing and may become restless when forced to sit through long theory or planning without action."
+      },
+      {
+        "title": "Quick thinking",
+        "description": "ESTPs think on their feet and can adapt quickly to new information or changing circumstances."
+      },
+      {
+        "title": "Risk-taking",
+        "description": "They often enjoy excitement and may take calculated risks in business, sports, or social situations."
+      }
+    ]
+  },
+  "ESFP": {
+    "title": "The Entertainer",
+    "summary": "ESFPs are spontaneous, energetic, and enthusiastic. They love to have fun, bring people together, and live in the moment with optimism and warmth.",
+    "behaviors": [
+      {
+        "title": "Fun and spontaneity",
+        "description": "They enjoy creating a good time for others and often have a natural talent for entertaining and lifting moods."
+      },
+      {
+        "title": "People-focused",
+        "description": "ESFPs are attentive to others' reactions and work to make people feel included and happy."
+      },
+      {
+        "title": "Present-oriented",
+        "description": "They focus on the here and now and may find long-term planning or abstract discussion less engaging."
+      }
+    ]
+  }
+}
