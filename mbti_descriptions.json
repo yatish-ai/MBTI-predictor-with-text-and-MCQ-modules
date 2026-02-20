@@ -37,19 +37,19 @@
   },
   "ENTJ": {
     "title": "The Commander",
-    "summary": "ENTJs are bold, strategic, and strong-willed. They take charge naturally, set clear goals, and mobilize people and resources to achieve results.",
+    "summary": "ENTJs demonstrate a preference for extraverted thinking (Te) combined with introverted intuition (Ni), resulting in a leadership style characterized by strategic planning, systematic organization, and goal-oriented decision-making. They structure their external environment through clear hierarchies and efficient processes.",
     "behaviors": [
       {
         "title": "Natural leadership",
-        "description": "They step into leadership roles easily and expect others to meet high standards and deadlines."
+        "description": "The dominant Te function drives ENTJs to organize systems and people toward defined objectives. This cognitive preference manifests as a tendency to assume leadership positions where they can implement structure and hold others accountable to established standards and timelines."
       },
       {
         "title": "Decisiveness",
-        "description": "ENTJs make decisions quickly and confidently, and prefer action over prolonged discussion."
+        "description": "The Te-Ni combination enables rapid assessment of options against strategic goals, leading to efficient decision-making processes. ENTJs typically favor moving forward with action rather than extended deliberation, as their cognitive framework prioritizes implementation and measurable outcomes."
       },
       {
         "title": "Direct communication",
-        "description": "They communicate clearly and directly, and may come across as demanding or intimidating when driving for results."
+        "description": "Extraverted thinking emphasizes clarity and efficiency in communication, resulting in straightforward, task-focused exchanges. When ENTJs prioritize results and organizational effectiveness, their communication style may be perceived as demanding or impersonal by those who prioritize relationship harmony or emotional considerations."
       }
     ]
   },
