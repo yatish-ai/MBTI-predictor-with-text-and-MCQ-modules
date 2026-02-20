@@ -1,0 +1,544 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question_text": "At a party, you are more likely to:",
+      "dimension": "EI",
+      "options": {
+        "A": {
+          "text": "Engage in deep conversations with a few close friends",
+          "trait": "I",
+          "score": -1
+        },
+        "B": {
+          "text": "Mingle with many different people throughout the event",
+          "trait": "E",
+          "score": 1
+        },
+        "C": {
+          "text": "Find a quiet corner and observe others",
+          "trait": "I",
+          "score": -1
+        },
+        "D": {
+          "text": "Take charge of organizing activities or games",
+          "trait": "E",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": 2,
+      "question_text": "When making decisions, you primarily rely on:",
+      "dimension": "TF",
+      "options": {
+        "A": {
+          "text": "Logical analysis and objective facts",
+          "trait": "T",
+          "score": 1
+        },
+        "B": {
+          "text": "How the decision will affect people's feelings",
+          "trait": "F",
+          "score": -1
+        },
+        "C": {
+          "text": "What makes the most sense based on data",
+          "trait": "T",
+          "score": 1
+        },
+        "D": {
+          "text": "Personal values and harmony",
+          "trait": "F",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 3,
+      "question_text": "You prefer to focus on:",
+      "dimension": "SN",
+      "options": {
+        "A": {
+          "text": "Concrete facts and practical details",
+          "trait": "S",
+          "score": 1
+        },
+        "B": {
+          "text": "Patterns, possibilities, and future implications",
+          "trait": "N",
+          "score": -1
+        },
+        "C": {
+          "text": "What is happening right now",
+          "trait": "S",
+          "score": 1
+        },
+        "D": {
+          "text": "Abstract concepts and theoretical ideas",
+          "trait": "N",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 4,
+      "question_text": "Your approach to deadlines and planning is:",
+      "dimension": "JP",
+      "options": {
+        "A": {
+          "text": "Plan ahead and stick to schedules",
+          "trait": "J",
+          "score": 1
+        },
+        "B": {
+          "text": "Keep options open and adapt as needed",
+          "trait": "P",
+          "score": -1
+        },
+        "C": {
+          "text": "Create detailed to-do lists and follow them",
+          "trait": "J",
+          "score": 1
+        },
+        "D": {
+          "text": "Work best under pressure with flexibility",
+          "trait": "P",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 5,
+      "question_text": "After a long day, you recharge by:",
+      "dimension": "EI",
+      "options": {
+        "A": {
+          "text": "Spending time alone reading or reflecting",
+          "trait": "I",
+          "score": -1
+        },
+        "B": {
+          "text": "Going out with friends or socializing",
+          "trait": "E",
+          "score": 1
+        },
+        "C": {
+          "text": "Engaging in a quiet hobby by yourself",
+          "trait": "I",
+          "score": -1
+        },
+        "D": {
+          "text": "Attending a group activity or event",
+          "trait": "E",
+          "score": 1
+        }
+      }
+    },
+    {
+      "id": 6,
+      "question_text": "When learning something new, you prefer:",
+      "dimension": "SN",
+      "options": {
+        "A": {
+          "text": "Step-by-step instructions and examples",
+          "trait": "S",
+          "score": 1
+        },
+        "B": {
+          "text": "Understanding the big picture first",
+          "trait": "N",
+          "score": -1
+        },
+        "C": {
+          "text": "Hands-on practice with real materials",
+          "trait": "S",
+          "score": 1
+        },
+        "D": {
+          "text": "Exploring concepts and theories",
+          "trait": "N",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 7,
+      "question_text": "In a conflict, you are more likely to:",
+      "dimension": "TF",
+      "options": {
+        "A": {
+          "text": "Focus on finding the most logical solution",
+          "trait": "T",
+          "score": 1
+        },
+        "B": {
+          "text": "Consider everyone's feelings and find compromise",
+          "trait": "F",
+          "score": -1
+        },
+        "C": {
+          "text": "Analyze the situation objectively",
+          "trait": "T",
+          "score": 1
+        },
+        "D": {
+          "text": "Ensure harmony and emotional well-being",
+          "trait": "F",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 8,
+      "question_text": "Your ideal work environment includes:",
+      "dimension": "JP",
+      "options": {
+        "A": {
+          "text": "Clear structure and organized systems",
+          "trait": "J",
+          "score": 1
+        },
+        "B": {
+          "text": "Flexibility to adapt and improvise",
+          "trait": "P",
+          "score": -1
+        },
+        "C": {
+          "text": "Defined processes and deadlines",
+          "trait": "J",
+          "score": 1
+        },
+        "D": {
+          "text": "Open-ended projects with creative freedom",
+          "trait": "P",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 9,
+      "question_text": "When meeting new people, you typically:",
+      "dimension": "EI",
+      "options": {
+        "A": {
+          "text": "Feel energized and excited",
+          "trait": "E",
+          "score": 1
+        },
+        "B": {
+          "text": "Feel drained and need time to process",
+          "trait": "I",
+          "score": -1
+        },
+        "C": {
+          "text": "Enjoy the social interaction",
+          "trait": "E",
+          "score": 1
+        },
+        "D": {
+          "text": "Prefer one-on-one conversations",
+          "trait": "I",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 10,
+      "question_text": "You trust information that is:",
+      "dimension": "SN",
+      "options": {
+        "A": {
+          "text": "Based on proven experience and facts",
+          "trait": "S",
+          "score": 1
+        },
+        "B": {
+          "text": "Based on insights and patterns",
+          "trait": "N",
+          "score": -1
+        },
+        "C": {
+          "text": "Observable and measurable",
+          "trait": "S",
+          "score": 1
+        },
+        "D": {
+          "text": "Theoretical and conceptual",
+          "trait": "N",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 11,
+      "question_text": "When giving feedback, you emphasize:",
+      "dimension": "TF",
+      "options": {
+        "A": {
+          "text": "Honest, direct assessment of performance",
+          "trait": "T",
+          "score": 1
+        },
+        "B": {
+          "text": "Encouragement and positive reinforcement",
+          "trait": "F",
+          "score": -1
+        },
+        "C": {
+          "text": "Objective criteria and standards",
+          "trait": "T",
+          "score": 1
+        },
+        "D": {
+          "text": "How it makes the person feel",
+          "trait": "F",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 12,
+      "question_text": "Your preferred way to complete tasks is:",
+      "dimension": "JP",
+      "options": {
+        "A": {
+          "text": "Finish early and have time to review",
+          "trait": "J",
+          "score": 1
+        },
+        "B": {
+          "text": "Work on multiple things and finish when ready",
+          "trait": "P",
+          "score": -1
+        },
+        "C": {
+          "text": "Follow a clear plan from start to finish",
+          "trait": "J",
+          "score": 1
+        },
+        "D": {
+          "text": "Adapt and change approach as needed",
+          "trait": "P",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 13,
+      "question_text": "In group settings, you tend to:",
+      "dimension": "EI",
+      "options": {
+        "A": {
+          "text": "Speak up frequently and share ideas",
+          "trait": "E",
+          "score": 1
+        },
+        "B": {
+          "text": "Listen more and speak when necessary",
+          "trait": "I",
+          "score": -1
+        },
+        "C": {
+          "text": "Take initiative and lead discussions",
+          "trait": "E",
+          "score": 1
+        },
+        "D": {
+          "text": "Process internally before contributing",
+          "trait": "I",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 14,
+      "question_text": "You are more interested in:",
+      "dimension": "SN",
+      "options": {
+        "A": {
+          "text": "What is real and tangible",
+          "trait": "S",
+          "score": 1
+        },
+        "B": {
+          "text": "What is possible and potential",
+          "trait": "N",
+          "score": -1
+        },
+        "C": {
+          "text": "Current facts and details",
+          "trait": "S",
+          "score": 1
+        },
+        "D": {
+          "text": "Future possibilities and meanings",
+          "trait": "N",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 15,
+      "question_text": "When evaluating a situation, you prioritize:",
+      "dimension": "TF",
+      "options": {
+        "A": {
+          "text": "Truth and accuracy above all",
+          "trait": "T",
+          "score": 1
+        },
+        "B": {
+          "text": "Compassion and understanding",
+          "trait": "F",
+          "score": -1
+        },
+        "C": {
+          "text": "What is fair and consistent",
+          "trait": "T",
+          "score": 1
+        },
+        "D": {
+          "text": "What feels right and harmonious",
+          "trait": "F",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 16,
+      "question_text": "You prefer your schedule to be:",
+      "dimension": "JP",
+      "options": {
+        "A": {
+          "text": "Well-organized and predictable",
+          "trait": "J",
+          "score": 1
+        },
+        "B": {
+          "text": "Flexible and open to change",
+          "trait": "P",
+          "score": -1
+        },
+        "C": {
+          "text": "Planned out in advance",
+          "trait": "J",
+          "score": 1
+        },
+        "D": {
+          "text": "Adaptable to new opportunities",
+          "trait": "P",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 17,
+      "question_text": "Your energy comes from:",
+      "dimension": "EI",
+      "options": {
+        "A": {
+          "text": "Interacting with the external world",
+          "trait": "E",
+          "score": 1
+        },
+        "B": {
+          "text": "Reflecting on your inner world",
+          "trait": "I",
+          "score": -1
+        },
+        "C": {
+          "text": "Being around people and activities",
+          "trait": "E",
+          "score": 1
+        },
+        "D": {
+          "text": "Solitude and quiet contemplation",
+          "trait": "I",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 18,
+      "question_text": "You are better at:",
+      "dimension": "SN",
+      "options": {
+        "A": {
+          "text": "Noticing specific details others miss",
+          "trait": "S",
+          "score": 1
+        },
+        "B": {
+          "text": "Seeing connections and implications",
+          "trait": "N",
+          "score": -1
+        },
+        "C": {
+          "text": "Working with concrete information",
+          "trait": "S",
+          "score": 1
+        },
+        "D": {
+          "text": "Grasping abstract concepts quickly",
+          "trait": "N",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 19,
+      "question_text": "When someone is upset, you are more likely to:",
+      "dimension": "TF",
+      "options": {
+        "A": {
+          "text": "Help them solve the problem logically",
+          "trait": "T",
+          "score": 1
+        },
+        "B": {
+          "text": "Provide emotional support and empathy",
+          "trait": "F",
+          "score": -1
+        },
+        "C": {
+          "text": "Analyze what went wrong objectively",
+          "trait": "T",
+          "score": 1
+        },
+        "D": {
+          "text": "Focus on how they feel about it",
+          "trait": "F",
+          "score": -1
+        }
+      }
+    },
+    {
+      "id": 20,
+      "question_text": "You feel more comfortable when:",
+      "dimension": "JP",
+      "options": {
+        "A": {
+          "text": "Things are decided and settled",
+          "trait": "J",
+          "score": 1
+        },
+        "B": {
+          "text": "Things are open and flexible",
+          "trait": "P",
+          "score": -1
+        },
+        "C": {
+          "text": "You have a clear plan to follow",
+          "trait": "J",
+          "score": 1
+        },
+        "D": {
+          "text": "You can explore different options",
+          "trait": "P",
+          "score": -1
+        }
+      }
+    }
+  ]
+}

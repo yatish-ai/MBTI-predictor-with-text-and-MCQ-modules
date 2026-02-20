@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}About - MBTI Personality Predictor{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>About This Project</h2>
+    <p style="line-height: 1.8; margin-bottom: 20px; color: #555;">
+        This MBTI Personality Predictor uses two distinct approaches to determine your Myers-Briggs 
+        Type Indicator personality type:
+    </p>
+    
+    <div style="margin-bottom: 30px;">
+        <h3 style="color: #667eea; margin-bottom: 15px;">1. Text-Based Analysis</h3>
+        <p style="line-height: 1.8; color: #555; margin-bottom: 15px;">
+            Our machine learning models analyze your writing style using natural language processing 
+            techniques. Four separate binary classifiers (one for each MBTI dimension) process your 
+            text and predict your personality traits based on linguistic patterns.
+        </p>
+        <ul style="line-height: 2; margin-left: 30px; color: #555;">
+            <li>Uses TF-IDF vectorization for feature extraction</li>
+            <li>Separate scikit-learn models for each dimension</li>
+            <li>Trained on MBTI personality data</li>
+            <li>Provides probability-based confidence scores</li>
+        </ul>
+    </div>
+    
+    <div style="margin-bottom: 30px;">
+        <h3 style="color: #667eea; margin-bottom: 15px;">2. MCQ-Based Test</h3>
+        <p style="line-height: 1.8; color: #555; margin-bottom: 15px;">
+            A deterministic scoring system based on multiple-choice questions. Each question belongs 
+            to exactly one MBTI dimension, and each option maps to a specific trait with a score value. 
+            The system maintains four independent scores and calculates confidence based on response consistency.
+        </p>
+        <ul style="line-height: 2; margin-left: 30px; color: #555;">
+            <li>Questions stored in JSON format for easy maintenance</li>
+            <li>Deterministic scoring algorithm</li>
+            <li>Transparent and explainable results</li>
+            <li>Dimension-wise confidence calculation</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>MBTI Dimensions Explained</h2>
+    
+    <div style="margin-bottom: 25px;">
+        <h3 style="color: #667eea; margin-bottom: 10px;">E/I - Extraversion vs Introversion</h3>
+        <p style="line-height: 1.8; color: #555;">
+            This dimension describes where you get your energy from. <strong>Extraverts (E)</strong> gain 
+            energy from external interactions and activities, while <strong>Introverts (I)</strong> recharge 
+            through solitude and internal reflection.
+        </p>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h3 style="color: #667eea; margin-bottom: 10px;">S/N - Sensing vs Intuition</h3>
+        <p style="line-height: 1.8; color: #555;">
+            This dimension describes how you process information. <strong>Sensing (S)</strong> types focus 
+            on concrete facts, details, and what is observable, while <strong>Intuitive (N)</strong> types 
+            focus on patterns, possibilities, and abstract concepts.
+        </p>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h3 style="color: #667eea; margin-bottom: 10px;">T/F - Thinking vs Feeling</h3>
+        <p style="line-height: 1.8; color: #555;">
+            This dimension describes how you make decisions. <strong>Thinking (T)</strong> types prioritize 
+            logic, objectivity, and consistency, while <strong>Feeling (F)</strong> types prioritize values, 
+            harmony, and the impact on people.
+        </p>
+    </div>
+    
+    <div style="margin-bottom: 25px;">
+        <h3 style="color: #667eea; margin-bottom: 10px;">J/P - Judging vs Perceiving</h3>
+        <p style="line-height: 1.8; color: #555;">
+            This dimension describes how you approach the outside world. <strong>Judging (J)</strong> types 
+            prefer structure, organization, and closure, while <strong>Perceiving (P)</strong> types prefer 
+            flexibility, spontaneity, and keeping options open.
+        </p>
+    </div>
+</div>
+
+<div class="card">
+    <h2>16 Personality Types</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 20px;">
+        {% for ptype, desc in personality_types.items() %}
+        <div style="padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
+            <strong style="color: #667eea; font-size: 1.2em;">{{ ptype }}</strong>
+            <p style="margin-top: 8px; color: #555; line-height: 1.6;">{{ desc }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="card" style="background: #fff3cd; border-left: 4px solid #ffc107;">
+    <h3 style="color: #856404; margin-bottom: 10px;">⚠️ Important Note</h3>
+    <p style="color: #856404; line-height: 1.8;">
+        This tool is designed for entertainment and research purposes. Personality assessments are complex, 
+        and no single test can fully capture the nuances of human personality. The MBTI is a useful framework 
+        for self-reflection, but it should not be used as the sole basis for important life decisions.
+    </p>
+</div>
+{% endblock %}

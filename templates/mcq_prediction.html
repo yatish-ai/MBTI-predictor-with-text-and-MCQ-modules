@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% block title %}MCQ Test - MBTI Personality Predictor{% endblock %}
+
+{% block extra_css %}
+<style>
+    .question-card {
+        background: white;
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 25px;
+        transition: border-color 0.3s;
+    }
+    
+    .question-card:hover {
+        border-color: #667eea;
+    }
+    
+    .question-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .question-number {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9em;
+    }
+    
+    .dimension-badge {
+        background: #f8f9fa;
+        color: #667eea;
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 600;
+        border: 1px solid #667eea;
+    }
+    
+    .question-text {
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+    
+    .options-container {
+        display: grid;
+        gap: 12px;
+    }
+    
+    .option-label {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        background: #f8f9fa;
+    }
+    
+    .option-label:hover {
+        border-color: #667eea;
+        background: #f0f4ff;
+    }
+    
+    .option-label input[type="radio"] {
+        margin-right: 12px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+    
+    .option-label input[type="radio"]:checked + .option-text {
+        color: #667eea;
+        font-weight: 600;
+    }
+    
+    .option-label:has(input[type="radio"]:checked) {
+        border-color: #667eea;
+        background: #f0f4ff;
+    }
+    
+    .option-text {
+        flex: 1;
+        color: #555;
+    }
+    
+    .progress-bar {
+        background: #e9ecef;
+        height: 8px;
+        border-radius: 4px;
+        margin-bottom: 30px;
+        overflow: hidden;
+    }
+    
+    .progress-fill {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        height: 100%;
+        transition: width 0.3s;
+    }
+    
+    .submit-section {
+        text-align: center;
+        padding: 30px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>📋 MCQ-Based Personality Test</h2>
+    <p style="margin-bottom: 20px; color: #555;">
+        Answer all questions below. Each question belongs to one MBTI dimension and helps determine 
+        your personality type. Please select one option for each question.
+    </p>
+    
+    {% if error %}
+    <div class="alert alert-error">
+        <strong>Error:</strong> {{ error }}
+    </div>
+    {% endif %}
+    
+    {% if questions %}
+    <form method="POST" action="{{ url_for('mcq_prediction') }}" id="mcqForm">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+        
+        {% for question in questions %}
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-number">Question {{ question.id }}</span>
+                <span class="dimension-badge">{{ question.dimension }}</span>
+            </div>
+            
+            <div class="question-text">{{ question.question_text }}</div>
+            
+            <div class="options-container">
+                {% for option_key, option_data in question.options.items() %}
+                <label class="option-label">
+                    <input 
+                        type="radio" 
+                        name="question_{{ question.id }}" 
+                        value="{{ option_key }}"
+                        {% if responses and responses.get(question.id|string) == option_key %}checked{% endif %}
+                        required>
+                    <span class="option-text">
+                        <strong>{{ option_key }}.</strong> {{ option_data.text }}
+                    </span>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        
+        <div class="submit-section">
+            <p style="margin-bottom: 20px; color: #555;">
+                <strong>{{ questions|length }} questions</strong> | Please answer all questions before submitting.
+            </p>
+            <button type="submit" class="btn" style="font-size: 18px; padding: 15px 40px;">
+                🎯 Submit Answers & Get Results
+            </button>
+        </div>
+    </form>
+    {% else %}
+    <div class="alert alert-error">
+        <strong>Error:</strong> Questions could not be loaded. Please check the mcq_questions.json file.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Update progress bar as user answers questions
+    function updateProgress() {
+        const form = document.getElementById('mcqForm');
+        const radios = form.querySelectorAll('input[type="radio"]:checked');
+        const totalQuestions = {{ questions|length if questions else 0 }};
+        const progress = (radios.length / totalQuestions) * 100;
+        document.getElementById('progressFill').style.width = progress + '%';
+    }
+    
+    // Add event listeners to all radio buttons
+    document.addEventListener('DOMContentLoaded', function() {
+        const radios = document.querySelectorAll('input[type="radio"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', updateProgress);
+        });
+        updateProgress(); // Initial progress check
+    });
+    
+    // Form validation
+    document.getElementById('mcqForm').addEventListener('submit', function(e) {
+        const form = this;
+        const radios = form.querySelectorAll('input[type="radio"]');
+        const checkedRadios = form.querySelectorAll('input[type="radio"]:checked');
+        const totalQuestions = {{ questions|length if questions else 0 }};
+        
+        if (checkedRadios.length < totalQuestions) {
+            e.preventDefault();
+            alert('Please answer all ' + totalQuestions + ' questions before submitting.');
+            return false;
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Home - MBTI Personality Predictor{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Welcome to MBTI Personality Predictor</h2>
+    <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 30px;">
+        Discover your Myers-Briggs Type Indicator (MBTI) personality type using two different methods:
+    </p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
+        <div class="card" style="text-align: center;">
+            <h3 style="color: #667eea; margin-bottom: 15px;">📝 Text-Based Analysis</h3>
+            <p style="margin-bottom: 20px; color: #555;">
+                Enter a text description about yourself, and our machine learning models will analyze 
+                your writing style to predict your MBTI personality type.
+            </p>
+            <a href="{{ url_for('text_prediction') }}" class="btn">Try Text Analysis</a>
+        </div>
+        
+        <div class="card" style="text-align: center;">
+            <h3 style="color: #667eea; margin-bottom: 15px;">📋 MCQ-Based Test</h3>
+            <p style="margin-bottom: 20px; color: #555;">
+                Answer multiple-choice questions designed to assess your preferences across 
+                the four MBTI dimensions. Get instant results with confidence scores.
+            </p>
+            <a href="{{ url_for('mcq_prediction') }}" class="btn">Take MCQ Test</a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>About MBTI</h2>
+    <p style="line-height: 1.8; margin-bottom: 20px;">
+        The <strong>Myers-Briggs Type Indicator (MBTI)</strong> assesses personality across four dimensions:
+    </p>
+    <ul style="line-height: 2; margin-left: 30px; color: #555;">
+        <li><strong>E/I (Extraversion/Introversion):</strong> Where you get your energy from</li>
+        <li><strong>S/N (Sensing/Intuition):</strong> How you process information</li>
+        <li><strong>T/F (Thinking/Feeling):</strong> How you make decisions</li>
+        <li><strong>J/P (Judging/Perceiving):</strong> How you approach the outside world</li>
+    </ul>
+    <p style="margin-top: 20px; line-height: 1.8; color: #555;">
+        These four dimensions combine to form 16 distinct personality types, each with unique characteristics 
+        and preferences.
+    </p>
+</div>
+
+<div class="card">
+    <h2>16 Personality Types</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;">
+        {% for ptype, desc in personality_types.items() %}
+        <div style="padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea;">
+            <strong style="color: #667eea; font-size: 1.1em;">{{ ptype }}</strong>
+            <p style="margin-top: 5px; color: #555; font-size: 0.9em;">{{ desc }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

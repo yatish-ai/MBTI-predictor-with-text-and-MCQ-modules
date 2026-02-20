@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Text Analysis - MBTI Personality Predictor{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>📝 Text-Based Personality Prediction</h2>
+    <p style="margin-bottom: 20px; color: #555;">
+        Enter a text description about yourself, your preferences, or how you approach situations. 
+        Our machine learning models will analyze your writing style to predict your MBTI personality type.
+    </p>
+    
+    {% if error %}
+    <div class="alert alert-error">
+        <strong>Error:</strong> {{ error }}
+    </div>
+    {% endif %}
+    
+    <form method="POST" action="{{ url_for('text_prediction') }}">
+        <div style="margin-bottom: 20px;">
+            <label for="text_input" style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">
+                Your Text Description:
+            </label>
+            <textarea 
+                id="text_input" 
+                name="text_input" 
+                rows="8" 
+                style="width: 100%; padding: 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px; font-family: inherit; resize: vertical;"
+                placeholder="Example: I enjoy breaking down complex problems and finding logical solutions. I prefer working independently and value deep, meaningful conversations over small talk..."
+                required>{{ input_text if input_text else '' }}</textarea>
+            <p style="margin-top: 5px; color: #6c757d; font-size: 0.9em;">
+                💡 Tip: Write at least 50-100 words for better accuracy.
+            </p>
+        </div>
+        
+        <button type="submit" class="btn">🔮 Predict Personality</button>
+    </form>
+</div>
+
+{% if result %}
+<div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+    <h2 style="color: white; margin-bottom: 20px;">🎯 Prediction Results</h2>
+    
+    <div style="text-align: center; padding: 30px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 30px;">
+        <h1 style="font-size: 3em; margin-bottom: 10px;">{{ result.personality_type }}</h1>
+        <p style="font-size: 1.2em; opacity: 0.9;">{{ result.description }}</p>
+    </div>
+    
+    <h3 style="color: white; margin-bottom: 15px;">📊 Dimension Analysis</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        {% for dimension, pred in result.dimensions.items() %}
+        {% if dimension == 'E/I' %}
+            {% set letter = 'I' if pred.prediction == 1 else 'E' %}
+        {% elif dimension == 'S/N' %}
+            {% set letter = 'S' if pred.prediction == 0 else 'N' %}
+        {% elif dimension == 'T/F' %}
+            {% set letter = 'T' if pred.prediction == 0 else 'F' %}
+        {% elif dimension == 'J/P' %}
+            {% set letter = 'J' if pred.prediction == 1 else 'P' %}
+        {% else %}
+            {% set letter = 'X' %}
+        {% endif %}
+        
+        <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 5px;">{{ dimension }}</div>
+            <div style="font-size: 2em; margin-bottom: 5px;">{{ letter }}</div>
+            <div style="font-size: 0.9em; opacity: 0.9;">{{ "%.1f"|format(pred.probability * 100) }}% confidence</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
