@@ -44,6 +44,7 @@ PERSONALITY_TYPES = {
 models = {}
 vectorizer = None
 mcq_engine = None
+MBTI_DESCRIPTIONS = {}  # Detailed MBTI descriptions loaded from JSON
 
 
 def load_ml_models():
@@ -161,16 +162,22 @@ def predict_personality_from_text(text):
 
 def load_mbti_descriptions():
     """
-    Load detailed MBTI descriptions from JSON for the homepage modal.
+    Load detailed MBTI descriptions from JSON.
+    This function loads the data once at startup and stores it globally.
     Returns a dict keyed by MBTI type, or empty dict if file missing.
     """
+    global MBTI_DESCRIPTIONS
     path = os.path.join(os.path.dirname(__file__), 'mbti_descriptions.json')
     if not os.path.exists(path):
+        MBTI_DESCRIPTIONS = {}
         return {}
     try:
         with open(path, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except (json.JSONDecodeError, IOError):
+            MBTI_DESCRIPTIONS = json.load(f)
+            return MBTI_DESCRIPTIONS
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"Warning: Could not load MBTI descriptions: {e}")
+        MBTI_DESCRIPTIONS = {}
         return {}
 
 
@@ -203,9 +210,13 @@ def text_prediction():
         if error:
             return render_template('text_prediction.html', error=error)
         
+        # Fetch detailed MBTI description for the predicted type
+        mbti_info = MBTI_DESCRIPTIONS.get(result.get('personality_type', ''), None)
+        
         return render_template('text_prediction.html', 
                              result=result, 
-                             input_text=text_input)
+                             input_text=text_input,
+                             mbti_info=mbti_info)
     
     # GET request - show form
     return render_template('text_prediction.html')
@@ -274,7 +285,10 @@ def mcq_prediction():
             'dimensions': dimension_results
         }
         
-        return render_template('mcq_results.html', result=result)
+        # Fetch detailed MBTI description for the predicted type
+        mbti_info = MBTI_DESCRIPTIONS.get(mbti_type, None)
+        
+        return render_template('mcq_results.html', result=result, mbti_info=mbti_info)
     
     # GET request - show questions
     questions = mcq_engine.get_all_questions()
@@ -291,17 +305,20 @@ def about():
 @app.before_request
 def before_request():
     """Ensure models are loaded before handling requests."""
-    global models, vectorizer, mcq_engine
+    global models, vectorizer, mcq_engine, MBTI_DESCRIPTIONS
     if not models:
         load_ml_models()
     if not mcq_engine:
         load_mcq_engine()
+    if not MBTI_DESCRIPTIONS:
+        load_mbti_descriptions()
 
 
 if __name__ == '__main__':
-    # Load models at startup
+    # Load models and data at startup
     load_ml_models()
     load_mcq_engine()
+    load_mbti_descriptions()  # Load MBTI descriptions once at startup
     
     # Run Flask app
     app.run(debug=True, host='0.0.0.0', port=5001)

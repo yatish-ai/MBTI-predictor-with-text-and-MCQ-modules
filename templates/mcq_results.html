@@ -124,9 +124,40 @@
 
 {% block content %}
 <div class="result-header">
-    <h1>{{ result.personality_type }}</h1>
+    <h1>{{ result.personality_type }}{% if mbti_info %} – {{ mbti_info.title }}{% endif %}</h1>
     <p>{{ result.description }}</p>
 </div>
+
+{% if mbti_info %}
+<div class="card">
+    <h2>📖 Detailed Personality Description</h2>
+    
+    <div style="margin-bottom: 25px;">
+        <h3 style="color: #667eea; margin-bottom: 15px; font-size: 1.2em;">
+            {{ result.personality_type }} – {{ mbti_info.title }}
+        </h3>
+        <p style="color: #555; line-height: 1.8; font-size: 1.05em; margin-bottom: 25px;">
+            {{ mbti_info.summary }}
+        </p>
+        
+        {% if mbti_info.behaviors and mbti_info.behaviors|length > 0 %}
+        <h3 style="color: #667eea; margin-bottom: 15px; font-size: 1.1em;">Key Behaviors & Characteristics</h3>
+        <div style="display: grid; gap: 20px;">
+            {% for behavior in mbti_info.behaviors %}
+            <div style="padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
+                <h4 style="color: #667eea; margin-bottom: 10px; font-size: 1.05em; font-weight: 600;">
+                    {{ behavior.title }}
+                </h4>
+                <p style="color: #555; line-height: 1.7; margin: 0;">
+                    {{ behavior.description }}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
 
 <div class="card">
     <h2>📊 Detailed Dimension Analysis</h2>
