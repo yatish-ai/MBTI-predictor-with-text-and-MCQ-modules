@@ -7,46 +7,78 @@
     .result-header {
         text-align: center;
         padding: 32px 26px 26px;
-        background: radial-gradient(circle at top left, #ffffff 0, #eef0ff 40%, #d3dbff 100%);
-        color: #111642;
-        border-radius: 12px;
+        background: 
+            linear-gradient(135deg, rgba(192, 192, 192, 0.95) 0%, rgba(74, 144, 226, 0.9) 50%, rgba(192, 192, 192, 0.95) 100%),
+            repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255, 255, 255, 0.1) 8px, rgba(255, 255, 255, 0.1) 16px);
+        color: #000;
+        border-radius: 8px;
         margin-bottom: 26px;
-        border: 1px solid rgba(163, 173, 255, 0.85);
+        border: 4px solid;
+        border-image: linear-gradient(135deg, var(--y2k-neon-blue), var(--y2k-neon-purple), var(--y2k-neon-green)) 1;
         box-shadow:
-            0 1px 0 #ffffff inset,
-            0 8px 22px rgba(0, 0, 0, 0.38);
+            0 0 20px rgba(0, 217, 255, 0.6),
+            0 0 15px rgba(184, 77, 255, 0.4),
+            0 8px 24px rgba(0, 0, 0, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.7),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+        transform: rotate(0.4deg);
     }
     
     .result-header h1 {
-        font-family: var(--font-primary);
-        font-size: 2.6rem;
+        font-family: var(--font-display);
+        font-size: 3rem;
         margin-bottom: 10px;
-        letter-spacing: 0.16em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
-        text-shadow: 0 0 8px rgba(79, 243, 255, 0.45);
+        text-shadow: 
+            0 0 12px var(--y2k-neon-blue),
+            0 0 20px var(--y2k-neon-purple),
+            3px 3px 0 rgba(0, 0, 0, 0.8),
+            -1px -1px 0 rgba(255, 255, 255, 0.6);
+        filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.9));
+        color: #000;
     }
     
     .result-header p {
-        font-size: 0.95rem;
-        opacity: 0.9;
-        font-family: var(--font-body);
+        font-size: 1rem;
+        opacity: 0.95;
+        font-family: var(--font-mono);
+        text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+        color: #000;
     }
     
     .dimension-result {
-        background: radial-gradient(circle at top left, #ffffff 0, #f0f2ff 40%, #e1e6ff 100%);
-        border: 1px solid rgba(163, 173, 255, 0.9);
-        border-radius: 10px;
-        padding: 25px;
+        background: 
+            linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(192, 192, 192, 0.9) 50%, rgba(255, 255, 255, 0.95) 100%),
+            repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(0, 217, 255, 0.05) 6px, rgba(0, 217, 255, 0.05) 12px);
+        border: 3px outset rgba(192, 192, 192, 0.8);
+        border-radius: 6px;
+        padding: 20px;
         margin-bottom: 20px;
-        transition: transform 0.2s;
+        transition: all 0.2s;
         box-shadow:
-            0 1px 0 #ffffff inset,
-            0 2px 10px rgba(0,0,0,0.22);
+            0 0 12px rgba(0, 217, 255, 0.4),
+            0 4px 12px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.7),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+        transform: rotate(0deg);
+    }
+    
+    .dimension-result:nth-child(odd) {
+        transform: rotate(-0.3deg);
+    }
+    .dimension-result:nth-child(even) {
+        transform: rotate(0.3deg);
     }
     
     .dimension-result:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+        transform: translateY(-3px) rotate(0deg) scale(1.02);
+        box-shadow: 
+            0 0 25px rgba(0, 217, 255, 0.8),
+            0 0 20px rgba(184, 77, 255, 0.6),
+            0 8px 20px rgba(0, 0, 0, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        filter: brightness(1.05);
     }
     
     .dimension-header {
@@ -57,27 +89,40 @@
     }
     
     .dimension-name {
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: #111642;
-        font-family: var(--font-primary);
-        letter-spacing: 0.12em;
+        font-size: 1rem;
+        font-weight: 400;
+        color: #000;
+        font-family: var(--font-display);
+        letter-spacing: 0.08em;
         text-transform: uppercase;
+        text-shadow: 
+            0 0 6px var(--y2k-neon-blue),
+            2px 2px 0 rgba(0, 0, 0, 0.8),
+            -1px -1px 0 rgba(255, 255, 255, 0.6);
     }
     
     .trait-badge {
-        font-size: 1.6rem;
-        font-weight: 600;
+        font-size: 1.8rem;
+        font-weight: 400;
         padding: 10px 20px;
-        border-radius: 8px;
-        background: linear-gradient(135deg, #1b204f 0%, #485cff 40%, #8b92ff 100%);
-        color: #fdfdff;
-        font-family: var(--font-primary);
+        border-radius: 6px;
+        background: 
+            linear-gradient(135deg, rgba(0, 217, 255, 0.95) 0%, rgba(184, 77, 255, 0.95) 50%, rgba(57, 255, 20, 0.95) 100%),
+            repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255, 255, 255, 0.15) 4px, rgba(255, 255, 255, 0.15) 8px);
+        color: #000;
+        font-family: var(--font-display);
         letter-spacing: 0.1em;
         text-transform: uppercase;
         box-shadow:
-            0 0 10px rgba(79, 243, 255, 0.5),
-            0 4px 10px rgba(0, 0, 0, 0.4);
+            0 0 15px rgba(0, 217, 255, 0.8),
+            0 0 12px rgba(184, 77, 255, 0.6),
+            0 4px 12px rgba(0, 0, 0, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        border: 2px outset rgba(192, 192, 192, 0.8);
+        text-shadow: 
+            0 0 10px var(--y2k-electric-yellow),
+            2px 2px 0 rgba(0, 0, 0, 0.8);
+        filter: drop-shadow(0 0 8px rgba(0, 217, 255, 0.9));
     }
     
     .score-info {
@@ -88,53 +133,72 @@
     }
     
     .score-item {
-        background: #f5f6ff;
+        background: 
+            linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(192, 192, 192, 0.9) 100%),
+            repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(0, 0, 0, 0.03) 4px, rgba(0, 0, 0, 0.03) 5px);
         padding: 15px;
-        border-radius: 8px;
+        border-radius: 4px;
         text-align: center;
-        border: 1px solid rgba(163, 173, 255, 0.7);
+        border: 2px inset rgba(192, 192, 192, 0.8);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
     }
     
     .score-item label {
         display: block;
-        font-size: 0.9em;
-        color: #6c757d;
+        font-size: 0.85rem;
+        color: #000;
         margin-bottom: 5px;
+        font-family: var(--font-mono);
+        text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
     }
     
     .score-item value {
         display: block;
-        font-size: 1.3em;
-        font-weight: 600;
-        color: #333;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #000;
+        font-family: var(--font-display);
+        text-shadow: 
+            0 0 8px var(--y2k-neon-blue),
+            2px 2px 0 rgba(0, 0, 0, 0.8);
     }
     
     .confidence-bar {
-        background: #d3daf7;
-        height: 25px;
-        border-radius: 12px;
+        background: rgba(192, 192, 192, 0.8);
+        height: 28px;
+        border-radius: 4px;
         overflow: hidden;
         margin-top: 10px;
         position: relative;
+        border: 2px inset rgba(192, 192, 192, 0.8);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     
     .confidence-fill {
-        background: linear-gradient(135deg, #1b204f 0%, #485cff 45%, #8b92ff 100%);
+        background: 
+            linear-gradient(135deg, rgba(0, 217, 255, 0.95) 0%, rgba(184, 77, 255, 0.95) 50%, rgba(57, 255, 20, 0.95) 100%),
+            repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255, 255, 255, 0.2) 4px, rgba(255, 255, 255, 0.2) 8px);
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
-        font-weight: 600;
-        font-size: 0.85em;
+        color: #000;
+        font-weight: 400;
+        font-size: 0.9rem;
+        font-family: var(--font-display);
         transition: width 0.5s;
+        text-shadow: 
+            0 0 8px var(--y2k-electric-yellow),
+            1px 1px 0 rgba(0, 0, 0, 0.8);
+        box-shadow: 0 0 10px rgba(0, 217, 255, 0.6);
     }
     
     .actions {
         text-align: center;
         margin-top: 40px;
         padding-top: 30px;
-        border-top: 2px solid rgba(163, 173, 255, 0.7);
+        border-top: 3px solid var(--y2k-chrome-blue);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
     }
     
     .actions a {
@@ -154,22 +218,22 @@
     <h2>📖 Detailed Personality Description</h2>
     
     <div style="margin-bottom: 25px;">
-        <h3 style="color: #667eea; margin-bottom: 15px; font-size: 1.2em;">
+        <h3 style="color: #000; margin-bottom: 15px; font-size: 1.3rem; font-family: var(--font-display); letter-spacing: 0.05em; text-transform: uppercase; text-shadow: 0 0 8px var(--y2k-neon-blue), 2px 2px 0 rgba(0, 0, 0, 0.8);">
             {{ result.personality_type }} – {{ mbti_info.title }}
         </h3>
-        <p style="color: #555; line-height: 1.8; font-size: 1.05em; margin-bottom: 25px;">
+        <p style="color: #000; line-height: 1.8; font-size: 1rem; margin-bottom: 25px; font-family: var(--font-mono); text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);">
             {{ mbti_info.summary }}
         </p>
         
         {% if mbti_info.behaviors and mbti_info.behaviors|length > 0 %}
-        <h3 style="color: #667eea; margin-bottom: 15px; font-size: 1.1em;">Key Behaviors & Characteristics</h3>
+        <h3 style="color: #000; margin-bottom: 15px; font-size: 1.1rem; font-family: var(--font-display); letter-spacing: 0.05em; text-transform: uppercase; text-shadow: 0 0 6px var(--y2k-neon-purple), 2px 2px 0 rgba(0, 0, 0, 0.8);">Key Behaviors & Characteristics</h3>
         <div style="display: grid; gap: 20px;">
             {% for behavior in mbti_info.behaviors %}
-            <div style="padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
-                <h4 style="color: #667eea; margin-bottom: 10px; font-size: 1.05em; font-weight: 600;">
+            <div style="padding: 18px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(192, 192, 192, 0.9) 100%); border-radius: 6px; border: 3px outset rgba(192, 192, 192, 0.8); box-shadow: 0 0 10px rgba(0, 217, 255, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.2);">
+                <h4 style="color: #000; margin-bottom: 10px; font-size: 1.1rem; font-weight: 400; font-family: var(--font-display); letter-spacing: 0.05em; text-transform: uppercase; text-shadow: 0 0 6px var(--y2k-neon-blue), 1px 1px 0 rgba(0, 0, 0, 0.8);">
                     {{ behavior.title }}
                 </h4>
-                <p style="color: #555; line-height: 1.7; margin: 0;">
+                <p style="color: #000; line-height: 1.7; margin: 0; font-family: var(--font-mono); text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);">
                     {{ behavior.description }}
                 </p>
             </div>
@@ -182,7 +246,7 @@
 
 <div class="card">
     <h2>📊 Detailed Dimension Analysis</h2>
-    <p style="margin-bottom: 25px; color: #555;">
+    <p style="margin-bottom: 25px; color: #000; font-family: var(--font-mono); text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);">
         Below is a breakdown of your scores and confidence levels for each MBTI dimension.
     </p>
     
@@ -210,7 +274,7 @@
             </div>
         </div>
         
-        <p style="margin-top: 15px; color: #6c757d; font-size: 0.9em;">
+        <p style="margin-top: 15px; color: #000; font-size: 0.9rem; font-family: var(--font-mono); text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);">
             {% if dimension == 'EI' %}
                 {% if dim_result.trait == 'E' %}
                     You show preferences for <strong>Extraversion</strong> - gaining energy from external interactions.
@@ -246,25 +310,25 @@
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
         <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
             <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 5px;">EI Score</div>
-            <div style="font-size: 2em; font-weight: bold; color: #667eea;">{{ result.scores.EI_score }}</div>
+            <div style="font-size: 2.2em; font-weight: 400; color: #000; font-family: var(--font-display); text-shadow: 0 0 10px var(--y2k-neon-blue), 2px 2px 0 rgba(0, 0, 0, 0.8);">{{ result.scores.EI_score }}</div>
         </div>
-        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-            <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 5px;">SN Score</div>
-            <div style="font-size: 2em; font-weight: bold; color: #667eea;">{{ result.scores.SN_score }}</div>
+        <div style="text-align: center; padding: 20px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(192, 192, 192, 0.9) 100%); border-radius: 6px; border: 3px outset rgba(192, 192, 192, 0.8); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);">
+            <div style="font-size: 0.85rem; color: #000; margin-bottom: 5px; font-family: var(--font-mono); text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);">SN Score</div>
+            <div style="font-size: 2.2em; font-weight: 400; color: #000; font-family: var(--font-display); text-shadow: 0 0 10px var(--y2k-neon-purple), 2px 2px 0 rgba(0, 0, 0, 0.8);">{{ result.scores.SN_score }}</div>
         </div>
-        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-            <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 5px;">TF Score</div>
-            <div style="font-size: 2em; font-weight: bold; color: #667eea;">{{ result.scores.TF_score }}</div>
+        <div style="text-align: center; padding: 20px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(192, 192, 192, 0.9) 100%); border-radius: 6px; border: 3px outset rgba(192, 192, 192, 0.8); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);">
+            <div style="font-size: 0.85rem; color: #000; margin-bottom: 5px; font-family: var(--font-mono); text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);">TF Score</div>
+            <div style="font-size: 2.2em; font-weight: 400; color: #000; font-family: var(--font-display); text-shadow: 0 0 10px var(--y2k-neon-green), 2px 2px 0 rgba(0, 0, 0, 0.8);">{{ result.scores.TF_score }}</div>
         </div>
-        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-            <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 5px;">JP Score</div>
-            <div style="font-size: 2em; font-weight: bold; color: #667eea;">{{ result.scores.JP_score }}</div>
+        <div style="text-align: center; padding: 20px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(192, 192, 192, 0.9) 100%); border-radius: 6px; border: 3px outset rgba(192, 192, 192, 0.8); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);">
+            <div style="font-size: 0.85rem; color: #000; margin-bottom: 5px; font-family: var(--font-mono); text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);">JP Score</div>
+            <div style="font-size: 2.2em; font-weight: 400; color: #000; font-family: var(--font-display); text-shadow: 0 0 10px var(--y2k-electric-yellow), 2px 2px 0 rgba(0, 0, 0, 0.8);">{{ result.scores.JP_score }}</div>
         </div>
     </div>
     
-    <div style="margin-top: 25px; padding: 20px; background: #e8f4fd; border-radius: 10px; border-left: 4px solid #667eea;">
-        <h3 style="color: #667eea; margin-bottom: 10px;">How Scores Work</h3>
-        <p style="color: #555; line-height: 1.8;">
+    <div style="margin-top: 25px; padding: 20px; background: linear-gradient(180deg, rgba(192, 192, 192, 0.9) 0%, rgba(160, 160, 160, 0.9) 100%); border-radius: 6px; border: 3px inset rgba(192, 192, 192, 0.8); box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);">
+        <h3 style="color: #000; margin-bottom: 10px; font-family: var(--font-display); letter-spacing: 0.05em; text-transform: uppercase; text-shadow: 0 0 6px var(--y2k-neon-blue), 1px 1px 0 rgba(0, 0, 0, 0.8);">How Scores Work</h3>
+        <p style="color: #000; line-height: 1.8; font-family: var(--font-mono); text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);">
             Each dimension score is calculated by summing the values of your selected options. 
             Positive scores indicate preference for the first trait (E, S, T, J), while negative scores 
             indicate preference for the second trait (I, N, F, P). Confidence is calculated as the 
