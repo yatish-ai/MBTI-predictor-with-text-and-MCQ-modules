@@ -148,16 +148,19 @@
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.78);
-        z-index: 9999;
-        align-items: center;
-        justify-content: center;
+        z-index: 9998;
         padding: 24px;
         backdrop-filter: blur(2px);
     }
     .modal-overlay.is-open {
-        display: flex;
+        display: block;
     }
     .modal-box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
         background: 
             linear-gradient(135deg, rgba(192, 192, 192, 0.98) 0%, rgba(74, 144, 226, 0.95) 50%, rgba(192, 192, 192, 0.98) 100%),
             repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255, 255, 255, 0.1) 8px, rgba(255, 255, 255, 0.1) 16px);
